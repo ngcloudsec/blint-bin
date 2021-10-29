@@ -8,9 +8,12 @@ jobs:
   Blint-Build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        repository: 'https://git.sr.ht/~prabhu/blint'
+    - name: Install poetry
+      run: |
+        git init blint
+        git remote add origin https://git.sr.ht/~prabhu/blint
+        git config gc.auto 0
+        git fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin
     - uses: actions/setup-python@v2
       with:
         python-version: '3.9'
