@@ -29,5 +29,5 @@ jobs:
       run: |
         rustup target add x86_64-unknown-linux-gnu
         cd blint
-        ~/.local/bin/pyoxidizer build --release --target-triple x86_64-unknown-linux-gnu
+        pyoxidizer build --release --target-triple x86_64-unknown-linux-gnu
         ./build/x86_64-unknown-linux-gnu/release/install/blint -i ./build/x86_64-unknown-linux-gnu/release/install/blint -o reports        
