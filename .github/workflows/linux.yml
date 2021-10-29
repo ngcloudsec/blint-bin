@@ -10,12 +10,7 @@ jobs:
     steps:
     - name: Install poetry
       run: |
-        git config --global init.defaultBranch main
-        git init .
-        git remote add origin https://git.sr.ht/~prabhu/blint
-        git config gc.auto 0
-        git config --get-all http.https://git.sr.ht/~prabhu/blint.extraheader
-        git fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin
+        git clone https://git.sr.ht/~prabhu/blint --depth=1
     - uses: actions/setup-python@v2
       with:
         python-version: '3.9'
