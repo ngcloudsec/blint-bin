@@ -33,5 +33,5 @@ jobs:
         ./build/x86_64-unknown-linux-gnu/release/install/blint -i ./build/x86_64-unknown-linux-gnu/release/install/blint -o reports
     - uses: actions/upload-artifact@v1
       with:
-        name: ./blint/build/x86_64-unknown-linux-gnu/release/install
-        path: blint-bin-linux-gnu
+        path: ./blint/build/x86_64-unknown-linux-gnu/release/install
+        name: blint-bin-linux-gnu
