@@ -6,7 +6,7 @@ on:
 
 jobs:
   Blint-Build:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - name: Checkout
       run: |
@@ -30,17 +30,7 @@ jobs:
         rustup target add x86_64-apple-darwin
         cd blint
         pyoxidizer build --release --target-triple x86_64-apple-darwin
-        ls -l ./build/x86_64-apple-darwin/release/install
-        ./build/x86_64-apple-darwin/release/install/blint -i ./build/x86_64-apple-darwin/release/install/blint -o reports
-    - name: Binary arm64 darwin build
-      run: |
-        rustup target add aarch64-apple-darwin
-        cd blint
-        pyoxidizer build --release --target-triple aarch64-apple-darwin        
-        ./build/aarch64-apple-darwin/release/install/blint -i ./build/aarch64-apple-darwin/release/install/blint -o reports        
     - uses: actions/upload-artifact@v1
       with:
-        path: |
-          ./blint/build/x86_64-apple-darwin/release/install
-          ./blint/build/aarch64-apple-darwin/release/install
+        path: blint/build/x86_64-apple-darwin/release/install
         name: blint-bin-darwin
