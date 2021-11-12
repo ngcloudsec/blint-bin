@@ -13,7 +13,6 @@ jobs:
     - name: Checkout
       run: |
         git clone https://git.sr.ht/~prabhu/blint
-        cd blint && git checkout fix/py36
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
