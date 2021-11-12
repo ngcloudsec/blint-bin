@@ -1,0 +1,37 @@
+name: Build Linux Binaries
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  Blint-Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      run: |
+        git clone https://git.sr.ht/~prabhu/blint --depth=1
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install rust minimal nightly
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: nightly
+    - name: Install poetry
+      run: |
+        python3 -m pip install twine setuptools wheel pyoxidizer
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
+        cd blint
+        ~/.local/bin/poetry export -f requirements.txt > requirements-dist.txt
+    - name: Binary gnu build
+      run: |
+        rustup target add x86_64-unknown-linux-gnu
+        cd blint
+        pyoxidizer build --release --target-triple x86_64-unknown-linux-gnu
+        ./build/x86_64-unknown-linux-gnu/release/install/blint -i ./build/x86_64-unknown-linux-gnu/release/install/blint -o reports
+    - uses: actions/upload-artifact@v1
+      with:
+        path: ./blint/build/x86_64-unknown-linux-gnu/release/install
+        name: blint-bin-linux-gnu
