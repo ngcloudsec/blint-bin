@@ -3,6 +3,8 @@ name: Build Windows Binaries
 on:
   push:
   workflow_dispatch:
+  schedule:
+  - cron: "0 2 * * *"
 
 jobs:
   Blint-Build:
@@ -13,7 +15,7 @@ jobs:
         git clone https://git.sr.ht/~prabhu/blint --depth=1
     - uses: actions/setup-python@v2
       with:
-        python-version: '3.10'
+        python-version: '3.9'
     - name: Install rust minimal nightly
       uses: actions-rs/toolchain@v1
       with:
