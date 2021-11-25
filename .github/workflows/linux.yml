@@ -3,6 +3,8 @@ name: Build Linux Binaries
 on:
   push:
   workflow_dispatch:
+  schedule:
+  - cron: "0 2 * * *"
 
 jobs:
   Blint-Build:
