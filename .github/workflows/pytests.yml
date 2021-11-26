@@ -47,14 +47,6 @@ jobs:
       - name: Checkout
         run: |
           git clone https://git.sr.ht/~prabhu/blint
-      - name: Install poetry
-        run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
-          cd blint
-          poetry install
-          poetry export -f requirements.txt -o requirements.txt
-        env:
-          PATH: ~/.local/bin:/Users/runner/Library/Python/3.9/bin:$PATH
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.2.2
         with:
@@ -70,14 +62,6 @@ jobs:
       - name: Checkout
         run: |
           git clone https://git.sr.ht/~prabhu/blint
-      - name: Install poetry
-        run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
-          cd blint
-          poetry install
-          poetry export -f requirements.txt -o requirements.txt
-        env:
-          PATH: ~/.local/bin:/Users/runner/Library/Python/3.9/bin:$PATH
       - name: Build sdist
         run: |
           cd blint
