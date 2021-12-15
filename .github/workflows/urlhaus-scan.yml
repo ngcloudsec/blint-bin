@@ -25,7 +25,7 @@ jobs:
         wget -i exe-links.txt
     - name: Perform scan
       run: |
-        blint -i malware -o reports
+        blint -i malware -o reports --suggest-fuzzable
     - uses: actions/upload-artifact@v1
       with:
         path: ./reports
