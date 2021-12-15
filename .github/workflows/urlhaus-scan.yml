@@ -21,11 +21,8 @@ jobs:
         mkdir malware
         cd malware
         curl -L "https://urlhaus.abuse.ch/downloads/text_online/" -o links.txt
-        grep "\.(exe\|dll\|zip)" links.txt | head -20 > exe-links.txt
+        grep "\.(exe\|dll)" links.txt | head -20 > exe-links.txt
         wget -i exe-links.txt
-        for i in `ls "*.zip"`; do
-          unzip $i
-        done
     - name: Perform scan
       run: |
         blint -i malware -o reports
