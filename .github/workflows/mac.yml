@@ -12,9 +12,9 @@ jobs:
     - name: Checkout
       run: |
         git clone https://git.sr.ht/~prabhu/blint --depth=1
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10'
     - name: Install the Apple certificate
       env:
         BUILD_CERTIFICATE_BASE64: ${{ secrets.CERTIFICATES_P12 }}
