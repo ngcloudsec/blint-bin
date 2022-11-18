@@ -7,7 +7,7 @@ on:
 jobs:
   Blint-Musl-Build:
     runs-on: ubuntu-latest
-    container: python:3.10-alpine
+    container: python:3.9-alpine
     steps:
     - uses: actions/checkout@v2
     - name: Install packages
